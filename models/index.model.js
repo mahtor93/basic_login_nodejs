@@ -1,4 +1,4 @@
-import Usuario  from "./usuario.model";
+import Usuario  from "./usuario.model.js";
 /*
 Este archivo genera las relaciones para las tablas de la base de datos.
 EJ:

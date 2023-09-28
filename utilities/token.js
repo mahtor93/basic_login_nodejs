@@ -1,4 +1,4 @@
-import { jwt } from "jsonwebtoken";
+import  jwt  from "jsonwebtoken";
 
 const makeJWT = data =>{
     return jwt.sign({ 
@@ -8,7 +8,7 @@ const makeJWT = data =>{
     }, /*process.env.JWT_SECRET,*/{expiresIn:'1d'});
 }
 
-const generarId = () => Math.random().toString(32).substring(2) + Date.noew().toString(32);
+const generarId = () => Math.random().toString(32).substring(2) + Date.now().toString(32);
 
 export{
     generarId, makeJWT

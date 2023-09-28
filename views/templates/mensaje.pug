@@ -1,0 +1,13 @@
+extends ../layout/index
+
+block contenido
+
+        .mt-8.mx-auto.max-w-md
+            .bg-gray-700.py-5.px-4.drop-shadow-md.rounded-xl
+                if mensajes 
+                div(class="max-w-md mx-auto my-10")
+                    each mensaje in mensajes
+                        p.text-indigo-600.text-center.p-2.mb-1.font-bold=mensaje.msg
+
+                    div.flex.items-center.justify-between 
+                        a.text-gray-200.text-xs(href='/auth/login') volver al login

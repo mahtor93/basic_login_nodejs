@@ -21,8 +21,8 @@ router.post('/registro',registrar);
 
 router.get('/confirmar/:token', confirmar);
 
-router.get('/se-me-olvido/:token', formularioOlvidePassword);
-router.post('/se-me-olvido',resetPassword);
+router.get('/se-me-olvido', formularioOlvidePassword);
+router.post('/se-me-olvido', resetPassword);
 
 router.get('/se-me-olvido/:token', comprobarToken);
 router.get('/se-me-olvido/token', nuevoPassword);

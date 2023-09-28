@@ -1,0 +1,11 @@
+extends ../layout/index
+
+block contenido
+
+    div(class="bg-gray-700 shadow py-8 px-4 rounded-xl max-w-md mx-auto")
+        p(class= error? 'bg-red-600':'bg-green-500').py-2.text-white.text-center.font-bold.px-5.rounded-md.w-full=mensaje
+        .flex.items-right.justify-center.pt-3
+            a.text-gray-500.text-xs(href='/auth/login')  
+            a.text-gray-500.text-xs(href="/auth/login") Ir al login 
+    
+        

@@ -1,9 +1,9 @@
 import { check, validationResult } from 'express-validator';
 import bcrypt from 'bcrypt';
-import Usuario from './models/Usuario.model.js';
+import Usuario from '../models/usuario.model.js';
 import { generarId, makeJWT } from '../utilities/token.js';
 import { emailRecuperacion, emailRegistro } from '../utilities/emails.js';
-import { ValidarClave } from '../utilities/validaciones.js';
+import  ValidarClave  from '../utilities/validaciones.js';
 
 
 const formularioLogin = (req,res) =>{
@@ -71,6 +71,7 @@ const autenticarLogin = async (req,res)=>{
 };
 //la aplicación valida los campos del formulario de registro
 const formularioRegistro = (req,res) =>{
+    
     res.render('auth/registro',{
         tituloPagina: 'Crear cuenta',
         csrfToken: req.csrfToken(),
@@ -81,8 +82,8 @@ const registrar = async (req,res) =>{
     try {
         await check('nombre').notEmpty().withMessage('Debes ingresar tu nombre').run(req);
         await check('nickname').notEmpty().withMessage('Debes ingresar tu apodo').run(req);
-        await check('apellido_pat').notEmpty().withMessage('Debes ingresar tu apellido').run(req);
-        await check('apellido_mat').notEmpty().withMessage('Debes ingresar tu otro apellido').run(req);
+        await check('apellido_uno').notEmpty().withMessage('Debes ingresar tu apellido').run(req);
+        await check('apellido_dos').notEmpty().withMessage('Debes ingresar tu otro apellido').run(req);
         //validar nacto.
         await check('email').notEmpty().withMessage('Debes ingresar tu email').run(req);
         await check('email').isEmail().withMessage('Email no válido').run(req);
@@ -92,7 +93,7 @@ const registrar = async (req,res) =>{
             await check(req.body.repetir_password).equals(req.body.password).withMessage('Las claves no coinciden').run(req);
         }
 
-        const resultado = validatonResult(req);
+        const resultado = validationResult(req);
         if(!resultado.isEmpty()){
             return res.render('auth/registro',{
                 tituloPagina: 'Crear cuenta',
@@ -113,8 +114,8 @@ const registrar = async (req,res) =>{
                 errores:[{msg: 'El correo ya está registrado, utiliza otro o recupera tu clave'}],
                 usuario:{
                     nombre: req.body.nombre,
-                    apellido_pat: req.body.apellido_pat,
-                    apellido_mat: req.body.apellido_mat,
+                    apellido_uno: req.body.apellido_uno,
+                    apellido_dos: req.body.apellido_dos,
                     nickname: req.body.nickname,
                     nacto: req.body.nacto,
                     email:req.body.email,
@@ -130,8 +131,8 @@ const registrar = async (req,res) =>{
                 errores:[{msg: 'El apodo ya está en uso, elige otro'}],
                 usuario:{
                     nombre: req.body.nombre,
-                    apellido_pat: req.body.apellido_pat,
-                    apellido_mat: req.body.apellido_mat,
+                    apellido_uno: req.body.apellido_uno,
+                    apellido_dos: req.body.apellido_dos,
                     nickname: req.body.nickname,
                     nacto: req.body.nacto,
                     email:req.body.email,
@@ -219,7 +220,7 @@ const resetPassword = async (req,res) =>{
             token: usuario.token,
         });
 
-        res.render('templates/mensaje',{
+        res.render('auth/se-me-olvido',{
             tituloPagina:'Recuperar clave',
             mensajes: [{msg:`Enviamos un correo de recuperación a ${req.body.email}`}],
         });
@@ -229,7 +230,7 @@ const resetPassword = async (req,res) =>{
     }
 }
 //renderiza el formulario para recuperar la clave
-const comprobarToken = async (req,res, netx) =>{
+const comprobarToken = async (req,res, next) =>{
     try{
         const { token } = req.params;
         const usuario = await Usuario.findOne({where:{token}});

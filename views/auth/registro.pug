@@ -1,0 +1,37 @@
+extends ../layout/index
+
+block contenido 
+
+    .mt-8.mx-auto.max-w-md
+        .bg-gray-700.py-5.px-4.drop-shadow-md.rounded-xl
+            form.space-y-3(method='POST' action='/auth/registro' noValidate)
+                input(type='hidden' name='_csrf' value=csrfToken)
+                div
+                    label.block.text-sm.text-gray-200.mb-2.font-bold(for="nombre") Tu nombre
+                    input#nombre.w-full.px-3.py-2.border.border-gray-300.rounded-xl.placeholder-gray-400(placeholder='Ingresa tu nombre 🌱' type='text' name='nombre' value=usuario?usuario.nombre:'')
+                div    
+                    label.block.text-sm.text-gray-200.mb-2.font-bold(for="apellido_uno") Tu primer apellido
+                    input#apellido_uno.w-full.px-3.py-2.border.border-gray-300.rounded-xl.placeholder-gray-400(placeholder='Ingresa tu primer apellido 🌳' type='text' name='apellido_uno' value=usuario?usuario.apellido_uno:'')
+                div    
+                    label.block.text-sm.text-gray-200.mb-2.font-bold(for="apellido_dos") Tu otro apellido
+                    input#apellido_dos.w-full.px-3.py-2.border.border-gray-300.rounded-xl.placeholder-gray-400(placeholder='Ingresa tu segundo apellido 🌴' type='text' name='apellido_dos' value=usuario?usuario.apellido_dos:'')
+                div
+                    label.block.text-sm.text-gray-200.mb-2.font-bold(for="nombre") Tu fecha de nacimiento
+                    input#nacto.w-full.px-3.py-2.border.border-gray-300.rounded-xl.placeholder-gray-400(type='date' name='nacto' value=usuario?usuario.nacto:'')
+                div
+                    label.block.text-sm.text-gray-200.mb-2.font-bold(for="nombre") Tu email
+                    input#email.w-full.px-3.py-2.border.border-gray-300.rounded-xl.placeholder-gray-400(placeholder='Ingresa tu email 🕊️' type='text' name='email' value=usuario?usuario.email:'')
+                div
+                    label.block.text-sm.text-gray-200.mb-2.font-bold(for="nickname") Tu nick
+                    input#nickname.w-full.px-3.py-2.border.border-gray-300.rounded-xl.placeholder-gray-400(placeholder='Crea tu nombre de jugador 🐲' type='text' name='nickname' value=usuario?usuario.nickname:'')
+                div
+                    label.block.text-sm.text-gray-200.mb-2.font-bold(for="password") Tu clave 
+                    input#password.w-full.px-3.py-2.border.border-gray-300.rounded-xl.placeholder-gray-400(placeholder='Crea tu clave 🙈' type='password' name='password')
+                div
+                    label.block.text-sm.text-gray-200.mb-2.font-bold(for="repetir_password") Repite tu clave
+                    input#repetir_password.w-full.px-3.py-2.border.border-gray-300.rounded-xl.placeholder-gray-400(placeholder='repíte tu clave 🙊' type='password' name='repetir_password')
+                div.flex.items-center.justify-between
+                    a.text-gray-200.text-xs(href="/auth/login") ¿Ya tienes Cuenta? Inicia Sesión.
+                    a.text-gray-200.text-xs(href="/auth/se-me-olvido") Olvidé mi password
+                
+                input(class='w-full bg-lime-600 py-2 hover:bg-lime-700 rounded-xl text-white font-bold' type='submit' value='Crear Cuenta')

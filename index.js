@@ -24,7 +24,7 @@ app.listen(port,()=>{
     console.log('Server corriendo en el puerto: '+port);
 })
 
-//ruta de archivos de vistas
+//ruta de archivos de vistas y archivos estáticos
 app.set('view engine', 'pug');
 app.set('views','./views')
 app.use(express.static('public'));

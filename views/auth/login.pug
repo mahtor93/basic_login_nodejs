@@ -1,0 +1,19 @@
+extends ../layout/index
+
+block contenido
+
+    .mt-8.mx-auto.max-w-md
+        .bg-gray-700.py-5.px-4.drop-shadow-md.rounded-xl
+            form.space-y-3(method='POST' action='/auth/login')
+                div
+                    label.block.text-sm.text-gray-200.mb-2.font-bold(for="email") Tu Correo
+                    input#email.w-full.px-3.py-2.border.border-gray-300.rounded-xl.placeholder-gray-400(placeholder='ingresa tu correo' type='text' name='email' value= usuario ? usuario.email: '')
+                div
+                    label.block.text-sm.text-gray-200.mb-2.font-bold(for="password") Tu Contraseña
+                    input#password.w-full.px-3.py-2.border.border-gray-300.rounded-xl.placeholder-gray-400(placeholder='ingresa tu contraseña' type='password' name='password')
+
+                div.flex.items-center.justify-between
+                    a.text-gray-200.text-xs(href="/auth/registro") ¿No tienes Cuenta? Crear Cuenta.
+                    a.text-gray-200.text-xs(href="/auth/se-me-olvido") Olvidé mi password
+                input(type='hidden' name='_csrf' value=csrfToken)
+                input(class='w-full bg-lime-600 py-2 hover:bg-lime-700 rounded-xl text-white font-bold' type='submit' value='Iniciar Sesión')

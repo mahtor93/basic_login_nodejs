@@ -1,0 +1,16 @@
+extends ../layout/index
+
+block contenido
+
+    .mt-8.mx-auto.max-w-md
+        .bg-gray-700.py-5.px-4.drop-shadow-md.rounded-xl
+            form.space-y-3(method='POST' action='/auth/se-me-olvido')
+                div
+                    label.block.text-sm.text-gray-200.mb-2.font-bold(for='email') Tu email
+                    input#email.w-full.px-3.py-2.border.border-gray-300.rounded-xl.placeholder-gray-400(placeholder='Ingresa tu correo' type='text' name='email')
+                div.flex.items-center.justify-between 
+                    a
+                    a.text-gray-200.text-xs(href='/auth/login') volver al login
+                input(type='hidden' name='_csrf' value=csrfToken)
+                input(class='w-full bg-lime-600 py-2 hover:bg-lime-700 rounded-xl text-white font-bold' type='submit' value='Recuperar clave')
+                

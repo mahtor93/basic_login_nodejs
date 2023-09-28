@@ -12,11 +12,11 @@ const Usuario = db.define('usuarios',{
         type: DataTypes.STRING,
         allowNull: false
     },
-    apellido_pat:{
+    apellido_uno:{
         type:DataTypes.STRING,
         allownull:false
     },
-    apellido_mat:{
+    apellido_dos:{
         type: DataTypes.STRING,
         allowNull:false
     },
