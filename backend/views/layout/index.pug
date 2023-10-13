@@ -21,13 +21,6 @@ html(lang="es")
                     each error in errores 
                         p.bg-red-600.text-white.uppercase.text-xs.text-center.p-2.mb-1.font-bold.rounded-md=error.msg
 
-            if mensajes
-                div(class='max-w-md mx-auto my-10')
-                    each mensaje in mensajes
-                        p.bg-lime-600.text-white.text-sx.text-center.p-2.mb-1.font-bold.rounded-xl=mensaje.msg
-            else
-                div(class='max-w-md mx-auto my-10')
-                    p
 
             block contenido 
 

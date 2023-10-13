@@ -25,7 +25,7 @@ router.get('/se-me-olvido', formularioOlvidePassword);
 router.post('/se-me-olvido', resetPassword);
 
 router.get('/se-me-olvido/:token', comprobarToken);
-router.get('/se-me-olvido/token', nuevoPassword);
+router.post('/se-me-olvido/:token', nuevoPassword);
 
 router.post('/auth/login', (req,res)=>{
     res.json({msg:'Login'})
